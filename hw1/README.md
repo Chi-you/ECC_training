@@ -17,4 +17,4 @@ $make hw1-2
 $make clean
 ```
 ## Result
-![](https://i.imgur.com/i2ofSpq.png)
+![](https://i.imgur.com/tePVXLD.png)
