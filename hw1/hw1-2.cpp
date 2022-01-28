@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
@@ -8,7 +9,7 @@
 using namespace std;
 
 #define LEN 1000000 // the length of bit
-#define EBN0 11
+#define EBN0 12
 
 #define M 3
 #define N 7
@@ -27,31 +28,44 @@ using namespace std;
 //     {1, 1, 0, 1, 0, 0, 1}
 // };
 
-int G[K][N] = {
-    {1, 0, 0, 0, 1, 1, 1},
-    {0, 1, 0, 0, 1, 1, 0},
-    {0, 0, 1, 0, 1, 0, 1},
-    {0, 0, 0, 1, 0, 1, 1}
-};
-
-int H[M][N] = {
-    {1, 1, 1, 0, 1, 0, 0},
-    {1, 1, 0, 1, 0, 1, 0},
-    {1, 0, 1, 1, 0, 0, 1}
-};
-
 // int G[K][N] = {
 //     {1, 1, 0, 1, 0, 0, 0},
 //     {0, 1, 1, 0, 1, 0, 0},
-//     {1, 1, 1, 0, 0, 1, 0},
-//     {1, 0, 1, 0, 0, 0, 1}
+//     {0, 0, 1, 1, 0, 1, 0},
+//     {0, 0, 0, 1, 1, 0, 1}
 // };
 
 // int H[M][N] = {
-//     {1, 0, 0, 1, 0, 1, 1},
+//     {1, 0, 1, 1, 1, 0, 0},
 //     {0, 1, 0, 1, 1, 1, 0},
 //     {0, 0, 1, 0, 1, 1, 1}
 // };
+
+// int G[K][N] = {
+//     {1, 0, 0, 0, 1, 1, 1},
+//     {0, 1, 0, 0, 1, 1, 0},
+//     {0, 0, 1, 0, 1, 0, 1},
+//     {0, 0, 0, 1, 0, 1, 1}
+// };
+
+// int H[M][N] = {
+//     {1, 1, 1, 0, 1, 0, 0},
+//     {1, 1, 0, 1, 0, 1, 0},
+//     {1, 0, 1, 1, 0, 0, 1}
+// };
+
+int G[K][N] = {
+    {1, 1, 0, 1, 0, 0, 0},
+    {0, 1, 1, 0, 1, 0, 0},
+    {1, 1, 1, 0, 0, 1, 0},
+    {1, 0, 1, 0, 0, 0, 1}
+};
+
+int H[M][N] = {
+    {1, 0, 0, 1, 0, 1, 1},
+    {0, 1, 0, 1, 1, 1, 0},
+    {0, 0, 1, 0, 1, 1, 1}
+};
 
 
 int random_message[LEN][K] = {0};
@@ -185,8 +199,8 @@ void channel_decoder()
 				after_demod[i][errorbit] = bitinvert(after_demod[i][errorbit]);
 			}
 		}
-		for (int j = 0; j < K; j++)
-			decoding_matrix[i][j] = after_demod[i][j];
+		for (int j = K-1, k = 0; j < N && k < K; j++, k++)
+			decoding_matrix[i][k] = after_demod[i][j];
 
 		for (int j = 0; j < M; j++)  
 			s[j] = 0;

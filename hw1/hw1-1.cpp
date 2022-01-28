@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 #include <cstring>
 #include <cstdlib>
 #include <cmath>
@@ -8,7 +9,7 @@
 using namespace std;
 
 #define LEN 4000000 // the length of bit
-#define EBN0 11
+#define EBN0 12
 
 int random_message[LEN] = {0};
 int after_mod[LEN] = {0};
