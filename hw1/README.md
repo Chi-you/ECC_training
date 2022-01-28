@@ -1,4 +1,4 @@
-# BPSK modulation
+# Hamming code + BPSK modulation
 ## How to run
 * Compile, execute and plot two results
 ```
