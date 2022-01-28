@@ -8,8 +8,8 @@
 
 using namespace std;
 
-#define LEN 1000000 // the length of bit
-#define EBN0 12
+#define LEN 5000000 // the length of bit
+#define EBN0 9
 
 #define M 3
 #define N 7
@@ -108,13 +108,13 @@ int demod(double code)
 
 void print(int ebn0, double ber) 
 {
-	cout << ebn0 << " " << ber << endl;
+	cout << ebn0 << " " << setprecision(20) << ber << endl;
 	fstream fout("Result2.txt", ios::out | ios::app);
 	if (!fout.is_open()) {
 		cout << "error" << endl;
 		exit(1);
 	}
-	fout << ebn0 << " " << ber << endl;
+	fout << ebn0 << " " << setprecision(20) << ber << endl;
 	fout.close();
 }
 
@@ -216,7 +216,7 @@ void calc_ber(int enb0)
 				err++;
 		}
 	}
-	double ber = err / (double)LEN;
+	double ber = err / (double)(LEN * K);
 	print(enb0, ber); 
 }
 

@@ -8,8 +8,8 @@
 
 using namespace std;
 
-#define LEN 4000000 // the length of bit
-#define EBN0 12
+#define LEN 20000000 // the length of bit
+#define EBN0 9
 
 int random_message[LEN] = {0};
 int after_mod[LEN] = {0};
@@ -28,13 +28,13 @@ int demod(double code)
 
 void print(int ebn0, double ber) 
 {
-	cout << ebn0 << " " << ber << endl;
+	cout << ebn0 << " " << setprecision(20) << ber << endl;
 	fstream fout("Result1.txt", ios::out | ios::app);
 	if (!fout.is_open()) {
 		cout << "error" << endl;
 		exit(1);
 	}
-	fout << ebn0 << " " << ber << endl;
+	fout << ebn0 << " " << setprecision(20) << ber << endl;
 	fout.close();
 }
 
